@@ -29,10 +29,10 @@
         Date de publication : {{ boardgame.publicationDate|format_datetime(pattern = 'y') }}
       </p>
       <p>
-        Description : {{ boardgame.description }}
+        Description :<br/> {{ boardgame.description|nl2br }}
       </p>
       <p>
-        Matériel de jeu : {{ boardgame.contents }}
+        Matériel de jeu :<br/> {{ boardgame.contents|nl2br }}
       </p>
       <div class="categories" style="margin-bottom: var(--typography-spacing-vertical);">
         {% for category in boardgame.categories %}

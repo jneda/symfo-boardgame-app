@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Hello CategoryController!
+  Voir les cattégories
 {% endblock %}
 
 {% block body %}
@@ -31,7 +31,7 @@
         <p>
           {{ category.description }}
         </p>
-        <a href="{{ path() }}"></a>
+        <a href="{{ path('app_category_details', { id: category.id }) }}">Voir les jeux correspondants</a>
       </article>
     {% endfor %}
   </div>

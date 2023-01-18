@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BoardGameController extends AbstractController
 {
-    #[Route('/boardgame', name: 'app_board_game')]
+    #[Route('/', name: 'app_board_game')]
     public function index(ManagerRegistry $doctrine): Response
     {
         $boardGameManager = $doctrine->getRepository(BoardGame::class);
@@ -23,19 +23,6 @@ class BoardGameController extends AbstractController
         return $this->render('board_game/index.html.twig', [
             'controller_name' => 'BoardGameController',
             'boardgames' => $boardGames
-        ]);
-    }
-
-    #[Route('/boardgame/{id}', name: 'app_board_game_details', requirements: ['page' => '\d+'])]
-    public function show(ManagerRegistry $doctrine, int $id)
-    {   
-        $boardGameManager = $doctrine->getRepository(BoardGame::class);
-        $boardGame = $boardGameManager->find($id);
-
-        dump($boardGame);
-
-        return $this->render('board_game/details.html.twig', [
-            'boardgame' => $boardGame
         ]);
     }
 
@@ -65,6 +52,17 @@ class BoardGameController extends AbstractController
         return $this->render('board_game/new.html.twig', [
             'controller_name' => 'BoardGameController',
             'form' => $form
+        ]);
+    }
+
+    #[Route('/boardgame/{id}', name: 'app_board_game_details', requirements: ['page' => '\d+'])]
+    public function show(ManagerRegistry $doctrine, int $id): Response
+    {   
+        $boardGameManager = $doctrine->getRepository(BoardGame::class);
+        $boardGame = $boardGameManager->find($id);
+
+        return $this->render('board_game/details.html.twig', [
+            'boardgame' => $boardGame
         ]);
     }
 }

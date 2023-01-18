@@ -1,29 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{boardgame.title}}{% endblock %}
+{% block title %}
+  {{ boardgame.title }}
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+  <style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font:
+    18px/1.5 sans-serif; } .example-wrapper code { background: #F5F5F5; padding:
+    2px 6px; }
+  </style>
 
-<div class="example-wrapper">
-    {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="flash-{{ label }}">{{ message }}</div>
-            {% endfor %}
-    {% endfor %}
-
-    <h1>{{boardgame.title}}</h1>
-        <article>
-            <p>Nombre de joueurs : {{ boardgame.playerCount }}</p>
-            <p>Durée d'une partie : {{ boardgame.durationMinutes }} minutes</p>
-            <p>Âge minimum : {{ boardgame.minAge }}</p>
-            <p>Date de publication : {{ boardgame.publicationDate|format_datetime(pattern='y') }}</p>
-            <p>Description : {{ boardgame.description }}</p>
-            <p>Matériel de jeu : {{ boardgame.contents }}</p>
-            <a href="{{ path("app_board_game") }}">&larr; Tous les jeux</a>
-        </article>
-</div>
+  <div class="example-wrapper">
+    <article>
+      <h1>
+        {{ boardgame.title }}
+      </h1>
+      <p>
+        Nombre de joueurs : {{ boardgame.playerCount }}
+      </p>
+      <p>
+        Durée d'une partie : {{ boardgame.durationMinutes }} minutes
+      </p>
+      <p>
+        Âge minimum : {{ boardgame.minAge }}
+      </p>
+      <p>
+        Date de publication : {{ boardgame.publicationDate|format_datetime(pattern = 'y') }}
+      </p>
+      <p>
+        Description : {{ boardgame.description }}
+      </p>
+      <p>
+        Matériel de jeu : {{ boardgame.contents }}
+      </p>
+      <div class="categories" style="margin-bottom: var(--typography-spacing-vertical);">
+        {% for category in boardgame.categories %}
+          {% dump category %}
+          <a href="{{ path('app_category_details', { id: category.id }) }}" role="button" class="secondary outline">
+            {{ category.label }}
+          </a>
+        {% endfor %}
+      </div>
+      <a href="{{ path('app_board_game') }}" role="button">
+        &larr; Tous les jeux
+      </a>
+    </article>
+  </div>
 {% endblock %}

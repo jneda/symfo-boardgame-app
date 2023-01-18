@@ -1,21 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CategoryController!{% endblock %}
+{% block title %}
+  Hello CategoryController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+  <style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font:
+    18px/1.5 sans-serif; } .example-wrapper code { background: #F5F5F5; padding:
+    2px 6px; }
+  </style>
 
-<div class="example-wrapper">
+  <div class="example-wrapper">
     {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="flash-{{ label }}">{{ message }}</div>
-            {% endfor %}
+      {% for message in messages %}
+        <div class="flash-{{ label }}">
+          {{ message }}
+        </div>
+      {% endfor %}
     {% endfor %}
 
-    <h1>Voir les catégories</h1>
-    {{ dump(categories) }}
-</div>
+    <h1>
+      Voir les catégories
+    </h1>
+    {% for category in categories %}
+      <article>
+        <h2>
+          {{ category.label }}
+        </h2>
+        <p>
+          {{ category.description }}
+        </p>
+        <a href="{{ path() }}"></a>
+      </article>
+    {% endfor %}
+  </div>
 {% endblock %}

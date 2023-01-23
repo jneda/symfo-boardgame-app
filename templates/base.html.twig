@@ -9,13 +9,22 @@
       {% endblock %}
     </title>
     <link rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>" />
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🎲</text></svg>" />
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 
     {% block stylesheets %}
       {{ encore_entry_link_tags('app') }}
+      {# Font Awesome #}
+      <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+      {# Pico CSS #}
       <link rel="stylesheet"
         href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+      {# Custom styles #}
+      <link rel="stylesheet" href="/css/global.css" />
       <link rel="stylesheet" href="/css/colors.css" />
       <link rel="stylesheet" href="/css/flash-messages.css" />
       <link rel="stylesheet" href="/css/pre.css" />
@@ -26,19 +35,19 @@
     {% endblock %}
   </head>
   <body>
-
     <nav>
       <ul>
-        <li><strong>Houlala Jeux</strong></li>
+        <li><strong>🎲 Houlala Jeux</strong></li>
       </ul>
       <ul>
-        <li><a href="{{ path("app_board_game") }}">Jeux</a></li>
-        <li><a href=" {{ path("app_category") }}">Catégories</a></li>
+        <li><a href="{{ path('app_board_game') }}">Jeux</a></li>
+        <li><a href=" {{ path('app_category') }}">Catégories</a></li>
         <li><a href="#" role="button">Se connecter</a></li>
       </ul>
     </nav>
 
     {% block body %}
+
     {% endblock %}
   </body>
 </html>

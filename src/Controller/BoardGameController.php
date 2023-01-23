@@ -21,7 +21,6 @@ class BoardGameController extends AbstractController
     {
         $boardGameManager = $doctrine->getRepository(BoardGame::class);
         $boardGames = $boardGameManager->findAll();
-        dump($boardGames);
 
         return $this->render('board_game/index.html.twig', [
             'controller_name' => 'BoardGameController',

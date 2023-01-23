@@ -21,7 +21,6 @@
         {{ category.description }}
       </p>
       {% for game in category.boardgames %}
-        {% dump game %}
         {{
           include(
             'board_game/_board_game.html.twig',

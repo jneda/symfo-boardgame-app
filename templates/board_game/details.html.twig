@@ -16,7 +16,7 @@
       <h1>
         {{ boardgame.title }}
       </h1>
-      <img src={{ asset('images/{{ boardgame.image }}')}} alt={{ boardgame.title }} />
+      <img src={{ asset('images/' ~ boardgame.image) }} alt="{{ boardgame.title }}" />
       <p>
         Nombre de joueurs : {{ boardgame.playerCount }}
       </p>

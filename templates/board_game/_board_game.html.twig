@@ -1,6 +1,6 @@
 <article>
   <h2>{{ boardgame.title }}</h2>
-  <img src='/images/{{ boardgame.image }}' alt={{ boardgame.title }} />
+  <img src={{ asset('images/' ~ boardgame.image) }} alt="{{ boardgame.title }}" />
   {% if boardgame.description|length < 256 %}
       <p>Description : {{ boardgame.description }}</p>
   {% else %}

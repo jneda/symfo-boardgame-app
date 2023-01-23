@@ -40,6 +40,9 @@ class BoardGame
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'boardGames')]
     private Collection $categories;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -135,6 +138,18 @@ class BoardGame
     public function setContents(string $contents): self
     {
         $this->contents = $contents;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

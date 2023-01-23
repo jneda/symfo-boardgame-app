@@ -1,0 +1,10 @@
+<article>
+  <h2>{{ boardgame.title }}</h2>
+  <img src='/images/{{ boardgame.image }}' alt={{ boardgame.title }} />
+  {% if boardgame.description|length < 256 %}
+      <p>Description : {{ boardgame.description }}</p>
+  {% else %}
+      <p>Description : {{ boardgame.description|slice(0, 255) ~ '...' }}</p>
+  {% endif %}
+  <a href="{{ path("app_board_game_details", { id: boardgame.id }) }}">Voir détails</a>
+</article>

@@ -3,7 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\BoardGame;
+use App\Form\CategoryType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -29,6 +31,7 @@ class BoardGameCrudController extends AbstractCrudController
             TextareaField::new('description', 'Description'),
             TextareaField::new('contents', 'Matériel de jeu'),
             ImageField::new('image')->setBasePath('images/')->setUploadDir('public/images/')->setFormTypeOption('required', false),
+            AssociationField::new('categories', 'Catégories'),
         ];
     }
    

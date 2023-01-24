@@ -6,6 +6,14 @@
 
 {% block body %}
   <div class="wrapper">
+   {% for label, messages in app.flashes %}
+      {% for message in messages %}
+        <div class="flash-{{ label }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endfor %}
+    
     <article>
       <h1>
         {{ category.label }}

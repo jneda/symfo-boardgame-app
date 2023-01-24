@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Hello UserController!
+{% endblock %}
+
+{% block body %}
+  <div class="wrapper">
+    <h1>
+      Coucou {{ user.username }} !
+    </h1>
+
+    <h2>
+      Ta collection de jeux:
+    </h2>
+    <ul>
+      {% for game in user.boardgames %}
+        {{
+          include(
+            'board_game/_board_game.html.twig',
+            {
+              boardgame: game
+            }
+          )
+        }}
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

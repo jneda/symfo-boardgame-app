@@ -43,9 +43,13 @@ class BoardGame
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'boardgames')]
+    private Collection $users;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -174,6 +178,33 @@ class BoardGame
     public function removeCategory(Category $category): self
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addBoardgame($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeBoardgame($this);
+        }
 
         return $this;
     }

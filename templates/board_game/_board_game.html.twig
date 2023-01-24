@@ -6,5 +6,15 @@
   {% else %}
       <p>Description : {{ boardgame.description|slice(0, 255) ~ '...' }}</p>
   {% endif %}
+  <div class="flex-controls">
   <a href="{{ path("app_board_game_details", { id: boardgame.id }) }}">Voir détails</a>
+  {% if app.user %}
+    {% if boardgame not in app.user.boardgames  %}
+      {# <a href="https://r.mtdv.me/assets/video/rick.mp4" target="_blank">Ajouter à ma collection</a> #}
+      <a href="{{ path('app_user_collection_add_game', { gameId: boardgame.id }) }}">Ajouter à ma collection</a>
+    {% else %}
+      <a href="{{ path('app_user_profile', { id: app.user.id }) }}" class="outline">Dans ma collection</a>
+    {% endif %}
+  {% endif %}
+  </div>
 </article>

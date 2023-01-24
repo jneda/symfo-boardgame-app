@@ -4,6 +4,11 @@ namespace App\Controller\Admin;
 
 use App\Entity\BoardGame;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class BoardGameCrudController extends AbstractCrudController
 {
@@ -12,14 +17,19 @@ class BoardGameCrudController extends AbstractCrudController
         return BoardGame::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('title', 'Titre'),
+            TextField::new('playerCount', 'Nombre de joueurs'),
+            IntegerField::new('durationMinutes',"Durée d'une partie (en minutes)"),
+            IntegerField::new('minAge', 'Âge minimum'),
+            DateField::new('publicationDate', 'Date de publication'),
+            TextareaField::new('description', 'Description'),
+            TextareaField::new('contents', 'Matériel de jeu'),
+            ImageField::new('image')->setBasePath('images/')->setUploadDir('public/images/')->setFormTypeOption('required', false),
         ];
     }
-    */
+   
 }

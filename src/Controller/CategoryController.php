@@ -56,7 +56,6 @@ class CategoryController extends AbstractController
     #[Route('/category/{id}', name: 'app_category_details')]
     public function show(ManagerRegistry $doctrine, $id)
     {
-        dump('calling show method');
         $categoryRepository = $doctrine->getRepository(Category::class);
         $category = $categoryRepository->find($id);
 

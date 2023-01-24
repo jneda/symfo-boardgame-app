@@ -37,9 +37,20 @@
           </a>
         {% endfor %}
       </div>
-      <a href="{{ path('app_board_game') }}" role="button">
-        &larr; Tous les jeux
-      </a>
+      <div  class="flex-controls">
+        <a href="{{ path('app_board_game') }}" role="button">
+          &larr; Tous les jeux
+        </a>
+        {% if app.user %}
+          {% if boardgame not in app.user.boardgames  %}
+            {# <a href="https://r.mtdv.me/assets/video/rick.mp4" target="_blank">Ajouter à ma collection</a> #}
+            <a href="{{ path('app_user_collection_add_game', { gameId: boardgame.id }) }}" role="button" class="outline">Ajouter à ma collection</a>
+          {% else %}
+            <a href="{{ path('app_user_profile', { id: app.user.id }) }}" role="button" class="outline">Dans ma collection</a>
+          {% endif %}
+       {% endif %}
+      </div>
+      
     </article>
   </div>
 {% endblock %}

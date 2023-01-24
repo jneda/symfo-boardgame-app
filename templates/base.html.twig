@@ -43,7 +43,11 @@
       <ul>
         <li><a href="{{ path('app_board_game') }}">Jeux</a></li>
         <li><a href="{{ path('app_category') }}">Catégories</a></li>
-        <li><a href="{{ path('app_login') }}" role="button">Se connecter</a></li>
+        {% if app.user %}
+          <li><a href="{{ path('app_logout') }}" role="button">Se déconnecter</a></li>
+        {% else %}
+          <li><a href="{{ path('app_login') }}" role="button">Se connecter</a></li>
+        {% endif %}
       </ul>
     </nav>
 
